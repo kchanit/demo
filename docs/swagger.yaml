@@ -1,0 +1,15 @@
+info:
+  contact: {}
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    description: API key
+    in: header
+    name: X-API-KEY
+    type: apiKey
+  JWT:
+    description: JWT
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

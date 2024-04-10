@@ -1,0 +1,21 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {},
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "description": "API key",
+            "type": "apiKey",
+            "name": "X-API-KEY",
+            "in": "header"
+        },
+        "JWT": {
+            "description": "JWT",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
