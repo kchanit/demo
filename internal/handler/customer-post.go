@@ -8,6 +8,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary      Order credit notation
+// @Tags         Order Management
+// @Accept       json
+// @Security 	 ApiKeyAuth
+// @Param		 data body request.CustomerPostRequest true "body"
+// @Produce      json
+// @Success      201  {object}  response.CustomerCreateResponse
+// @Failure 	 400  {object} 	errormodel.BusinessError
+// @Failure 	 409  {object} 	errormodel.BusinessError
+// @Router /v1/customer [post]
 func (h *handler) HandlerCustomerPost(c *gin.Context) {
 	req := request.CustomerPostRequest{}
 

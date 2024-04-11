@@ -5,6 +5,7 @@ import (
 
 	docs "github.com/centraldigital/cfw-cms-bff/docs"
 	"github.com/centraldigital/cfw-cms-bff/internal/handler"
+	"github.com/centraldigital/cfw-core-lib/pkg/util/ginutil"
 
 	"github.com/centraldigital/cfw-cms-bff/property"
 	"github.com/gin-gonic/gin"
@@ -58,6 +59,14 @@ func SetupRouter(r *gin.Engine, h handler.Handler) {
 		customer.DELETE("/:customer-id", func(c *gin.Context) {
 			h.HandlerCustomerDelete(c, c.Param("customer-id"))
 		})
+	}
+
+	dog := baseRouterV1.Group("/dog")
+	{
+		dog.POST("/:breed", func(c *gin.Context) {
+			ginutil.BindReqJson204Resp(c, h.HandlerDogImagePost)
+		})
+
 	}
 
 }

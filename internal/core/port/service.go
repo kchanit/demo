@@ -3,6 +3,7 @@ package port
 import (
 	"context"
 
+	"github.com/centraldigital/cfw-cms-bff/internal/core/domain"
 	"github.com/centraldigital/cfw-cms-bff/pkg/model/request"
 	"github.com/centraldigital/cfw-cms-bff/pkg/model/response"
 )
@@ -13,4 +14,6 @@ type Service interface {
 	GetAllCustomers(ctx context.Context) (*response.CustomerGetAllResponse, error)
 	UpdateCustomer(ctx context.Context, customerID string, req request.CustomerPutRequest) error
 	DeleteCustomer(ctx context.Context, customerID string) error
+
+	PostDogImage(ctx context.Context, in domain.DogPostRequest) error
 }

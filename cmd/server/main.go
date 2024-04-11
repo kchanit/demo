@@ -10,6 +10,7 @@ import (
 	"github.com/centraldigital/cfw-cms-bff/internal/handler"
 	"github.com/centraldigital/cfw-cms-bff/internal/repository"
 	"github.com/centraldigital/cfw-cms-bff/internal/repository/misc"
+	"github.com/centraldigital/cfw-cms-bff/pkg/model/request"
 	"github.com/centraldigital/cfw-cms-bff/property"
 	"github.com/centraldigital/cfw-core-lib/pkg/configuration/logger"
 	"github.com/centraldigital/cfw-core-lib/pkg/configuration/server"
@@ -57,12 +58,15 @@ func main() {
 
 	// init infrastructure
 	pgx, scanapi := infrastructure.NewPostgres(ctx)
+	dogAdpt := infrastructure.NewDogHttpClient(ctx)
 
 	// init adapter
-	adpt := adapter.New()
+	adpt := adapter.New(dogAdpt)
 
 	// init repository
 	repo := repository.New(pgx, scanapi)
+
+	repo.CreateCustomer(ctx, request.CustomerPostRequest{})
 
 	// init miscrepo
 	miscRepo, err := misc.New(ctx)

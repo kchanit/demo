@@ -2,6 +2,7 @@ package adapter
 
 import (
 	"errors"
+	"net/http"
 
 	domainadapter "github.com/centraldigital/cfw-cms-bff/internal/adapter/domain-adapter"
 	"github.com/centraldigital/cfw-cms-bff/internal/core/port"
@@ -11,10 +12,13 @@ import (
 var ContentTypeJsonHeader = map[string]string{"Content-Type": "application/json"}
 
 type adapter struct {
+	httpClient adaptor.ClientAdaptor
 }
 
-func New() port.Adapter {
-	return &adapter{}
+func New(httpClient *http.Client) port.Adapter {
+	return &adapter{
+		httpClient: adaptor.NewClient(httpClient),
+	}
 }
 
 func handleWAppError[T any](readResponse adaptor.ReadResponse[T]) error {

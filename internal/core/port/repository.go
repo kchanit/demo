@@ -3,6 +3,7 @@ package port
 import (
 	"context"
 
+	"github.com/centraldigital/cfw-cms-bff/internal/core/domain"
 	"github.com/centraldigital/cfw-cms-bff/internal/repository/entity"
 	"github.com/centraldigital/cfw-cms-bff/pkg/model/request"
 )
@@ -14,4 +15,6 @@ type Repository interface {
 	GetCustomerByEmail(ctx context.Context, email string) (*entity.Customer, error)
 	UpdateCustomer(ctx context.Context, customerID string, req request.CustomerPutRequest) error
 	DeleteCustomer(ctx context.Context, customerID string) error
+
+	PostDogImage(ctx context.Context, req domain.DogPostRequest) error
 }
